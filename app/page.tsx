@@ -3,44 +3,37 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { ProductGrid } from "@/components/shop/ProductGrid";
+import Link from "next/link";
 
-// Mock data based on the seed requirement
-const featuredProducts = [
-  {
-    id: "1",
-    name: "Heritage Cardigan",
-    price: 185.00,
-    category: "Apparel",
-    image: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=800&auto=format&fit=crop", // Placeholder
-    slug: "heritage-cardigan"
-  },
-  {
-    id: "2",
-    name: "Sienna Bucket Bag",
-    price: 75.00,
-    category: "Accessories",
-    image: "https://images.unsplash.com/photo-1590874103328-3165b6f3c4ec?q=80&w=800&auto=format&fit=crop", // Placeholder
-    slug: "sienna-bucket-bag"
-  },
-  {
-    id: "3",
-    name: "Lunar Scallop Bralette",
-    price: 55.00,
-    category: "Apparel",
-    image: "https://images.unsplash.com/photo-1608235677677-9477e347494a?q=80&w=800&auto=format&fit=crop", // Placeholder
-    slug: "lunar-scallop-bralette"
-  },
-  {
-    id: "4",
-    name: "\"Slow Morning\" Throw",
-    price: 240.00,
-    category: "Home",
-    image: "https://images.unsplash.com/photo-1596483253245-c4b37014605e?q=80&w=800&auto=format&fit=crop", // Placeholder
-    slug: "slow-morning-throw"
-  }
-];
+import { useEffect, useState } from "react";
+import { getFeaturedProducts, Product } from "@/lib/api";
 
 export default function Home() {
+  const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchFeatured = async () => {
+      try {
+        const data = await getFeaturedProducts();
+        setFeaturedProducts(data);
+      } catch (error) {
+        console.error("Failed to fetch featured products:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchFeatured();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
@@ -72,9 +65,11 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <Button size="lg" className="rounded-full px-10">
-              Shop Collection
-            </Button>
+            <Link href="/shop">
+              <Button size="lg" className="rounded-full px-10">
+                Shop Collection
+              </Button>
+            </Link>
           </motion.div>
         </div>
       </section>
@@ -91,9 +86,11 @@ export default function Home() {
           <ProductGrid products={featuredProducts} />
 
           <div className="text-center mt-16">
-            <Button variant="outline" size="lg" className="rounded-full px-10">
-              View All Products
-            </Button>
+            <Link href="/shop">
+              <Button variant="outline" size="lg" className="rounded-full px-10">
+                View All Products
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -107,9 +104,11 @@ export default function Home() {
               <p className="text-white/80 leading-relaxed mb-8 max-w-md">
                 We believe in the beauty of slowness. Our materials are ethically sourced, and our process honors the tradition of needlework. No mass production, just pure intention.
               </p>
-              <Button variant="secondary" className="rounded-full">
-                Read Our Story
-              </Button>
+              <Link href="/about">
+                <Button variant="secondary" className="rounded-full">
+                  Read Our Story
+                </Button>
+              </Link>
             </div>
             <div className="relative h-[500px] w-full bg-white/5 rounded-lg overflow-hidden">
               {/* Abstract image or video placeholder */}

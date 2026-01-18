@@ -6,6 +6,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ShoppingCart, Menu, X, Search, Heart, User } from "lucide-react";
 import { useCart } from "@/context/CartContext";
+import { getStorageUrl } from "@/lib/api";
 
 export const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -47,7 +48,7 @@ export const Header = () => {
                             className="relative h-12 w-40"
                         >
                             <Image
-                                src="/logo.jpg"
+                                src={getStorageUrl("logo/Image Jan 18, 2026 at 12_11_06 AM.png")}
                                 alt="Crochetty"
                                 fill
                                 className="object-contain"

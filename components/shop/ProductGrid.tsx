@@ -5,14 +5,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Heart, ShoppingCart } from "lucide-react";
+import { getStorageUrl } from "@/lib/api";
 
 interface Product {
     id: string;
     name: string;
     price: number;
     category: string;
-    image: string;
-    slug: string;
+    images: string[];
+    slug?: string;
 }
 
 interface ProductGridProps {
@@ -54,11 +55,11 @@ export const ProductGrid: React.FC<ProductGridProps> = ({ products }) => {
                     variants={itemVariants}
                     className="group relative"
                 >
-                    <Link href={`/shop/${product.slug}`} className="block">
+                    <Link href={`/shop/${product.id}`} className="block">
                         {/* Product Image Container */}
                         <div className="relative aspect-[3/4] overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800 mb-4">
                             <Image
-                                src={product.image}
+                                src={getStorageUrl(`Products/${product.images?.[0]?.replace('/images/', '') || ''}`)}
                                 alt={product.name}
                                 fill
                                 className="object-cover transition-transform duration-500 group-hover:scale-110"
