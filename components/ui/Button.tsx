@@ -11,7 +11,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ({ variant = "primary", size = "md", className = "", children, ...props }, ref) => {
-        const baseStyles = "rounded-lg font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed";
+        const baseStyles = "rounded-lg font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#2A9D8F]";
 
         const variantStyles = {
             primary: "bg-gradient-to-r from-[#1B7A6E] to-[#2A9D8F] text-white hover:shadow-lg hover:scale-105",
@@ -34,7 +34,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 className={combinedClassName}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                {...(props as any)}
+                {...props}
             >
                 {children}
             </motion.button>
