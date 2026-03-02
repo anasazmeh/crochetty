@@ -9,12 +9,18 @@
     "lint": "eslint",
     "build:worker": "opennextjs-cloudflare build",
     "deploy": "opennextjs-cloudflare build && wrangler deploy",
-    "preview": "opennextjs-cloudflare build && wrangler dev"
+    "preview": "opennextjs-cloudflare build && wrangler dev",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.0.2",
     "@opennextjs/cloudflare": "^1.17.1",
     "@supabase/supabase-js": "^2.90.1",
     "clsx": "^2.1.1",
+    "drizzle-orm": "^0.45.1",
     "framer-motion": "^12.26.2",
     "lucide-react": "^0.562.0",
     "next": "16.1.1",
@@ -27,6 +33,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "drizzle-kit": "^0.31.9",
     "eslint": "^9",
     "eslint-config-next": "16.1.1",
     "tailwindcss": "^4",
