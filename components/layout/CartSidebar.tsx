@@ -7,9 +7,7 @@ import { useCart } from "@/context/CartContext";
 import { Button } from "@/components/ui/button";
 
 export function CartSidebar() {
-    const { cartOpen, closeCart, items, removeItem } = useCart();
-
-    const total = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    const { state: { open: cartOpen, items }, closeCart, removeItem, totalPrice } = useCart();
 
     return (
         <AnimatePresence>
@@ -70,7 +68,7 @@ export function CartSidebar() {
                         <div className="p-6 border-t bg-gray-50">
                             <div className="flex justify-between mb-4 text-primary font-medium">
                                 <span>Subtotal</span>
-                                <span>${total.toFixed(2)}</span>
+                                <span>€{totalPrice.toFixed(2)}</span>
                             </div>
                             <Button className="w-full" size="lg" disabled={items.length === 0}>
                                 Checkout

@@ -11,9 +11,7 @@ import { getStorageUrl } from "@/lib/api";
 export const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const { items } = useCart();
-
-    const cartItemCount = items.reduce((sum, item) => sum + item.quantity, 0);
+    const { totalItems: cartItemCount } = useCart();
 
     useEffect(() => {
         const handleScroll = () => {
