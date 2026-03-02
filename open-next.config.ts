@@ -1,16 +1,6 @@
-import type { OpenNextConfig } from "@opennextjs/cloudflare";
+import { defineCloudflareConfig } from "@opennextjs/cloudflare";
+import kvIncrementalCache from "@opennextjs/cloudflare/overrides/incremental-cache/kv-incremental-cache";
 
-const config: OpenNextConfig = {
-  default: {
-    override: {
-      wrapper: "cloudflare-node",
-      converter: "edge",
-      incrementalCache: async () => {
-        const { KVCache } = await import("@opennextjs/cloudflare");
-        return new KVCache();
-      },
-    },
-  },
-};
-
-export default config;
+export default defineCloudflareConfig({
+  incrementalCache: kvIncrementalCache,
+});
