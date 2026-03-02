@@ -30,8 +30,8 @@ export const Footer = () => {
     };
 
     const socialLinks = [
-        { name: "Instagram", icon: Instagram, href: "https://instagram.com", color: "hover:text-[#1B7A6E]" },
-        { name: "Email", icon: Mail, href: "mailto:hello@crochetty.com", color: "hover:text-[#2A9D8F]" }
+        { name: "Instagram", icon: Instagram, href: "https://instagram.com", color: "hover:text-primary" },
+        { name: "Email", icon: Mail, href: "mailto:hello@crochetty.com", color: "hover:text-primary" }
     ];
 
     return (
@@ -41,7 +41,7 @@ export const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
                     {/* Brand Section */}
                     <div className="space-y-4">
-                        <h3 className="text-2xl font-bold text-[#1B7A6E] dark:text-[#2A9D8F]">
+                        <h3 className="text-2xl font-bold text-primary dark:text-primary-light">
                             Crochetty
                         </h3>
                         <p className="text-gray-600 dark:text-gray-400 text-sm">
@@ -74,7 +74,7 @@ export const Footer = () => {
                                 <li key={link.name}>
                                     <Link
                                         href={link.href}
-                                        className="text-gray-600 dark:text-gray-400 hover:text-[#1B7A6E] dark:hover:text-[#2A9D8F] transition-colors text-sm"
+                                        className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary-light transition-colors text-sm"
                                     >
                                         {link.name}
                                     </Link>
@@ -91,7 +91,7 @@ export const Footer = () => {
                                 <li key={link.name}>
                                     <Link
                                         href={link.href}
-                                        className="text-gray-600 dark:text-gray-400 hover:text-[#1B7A6E] dark:hover:text-[#2A9D8F] transition-colors text-sm"
+                                        className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary-light transition-colors text-sm"
                                     >
                                         {link.name}
                                     </Link>
@@ -108,7 +108,7 @@ export const Footer = () => {
                                 <li key={link.name}>
                                     <Link
                                         href={link.href}
-                                        className="text-gray-600 dark:text-gray-400 hover:text-[#1B7A6E] dark:hover:text-[#2A9D8F] transition-colors text-sm"
+                                        className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary-light transition-colors text-sm"
                                     >
                                         {link.name}
                                     </Link>
@@ -131,12 +131,12 @@ export const Footer = () => {
                             <input
                                 type="email"
                                 placeholder="Enter your email"
-                                className="flex-1 px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#1B7A6E]"
+                                className="flex-1 px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary"
                             />
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="px-6 py-2 bg-gradient-to-r from-[#1B7A6E] to-[#2A9D8F] text-white rounded-lg font-medium"
+                                className="px-6 py-2 bg-gradient-to-r from-primary to-primary-light text-white rounded-lg font-medium"
                             >
                                 Subscribe
                             </motion.button>
@@ -147,10 +147,10 @@ export const Footer = () => {
                 {/* Bottom Bar */}
                 <div className="border-t border-gray-200 dark:border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
                     <p className="text-gray-600 dark:text-gray-400 text-sm flex items-center gap-1">
-                        © {currentYear} Crochetty. Made with <Heart className="w-4 h-4 text-[#1B7A6E] fill-[#1B7A6E]" /> by hand.
+                        © {currentYear} Crochetty. Made with <Heart className="w-4 h-4 text-primary fill-primary" /> by hand.
                     </p>
                     <div className="flex gap-6 text-sm">
-                        <Link href="/privacy" className="text-gray-600 dark:text-gray-400 hover:text-[#1B7A6E] transition-colors">
+                        <Link href="/privacy" className="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors">
                             Privacy Policy
                         </Link>
                         <Link href="/terms" className="text-gray-600 dark:text-gray-400 hover:text-pink-500 transition-colors">

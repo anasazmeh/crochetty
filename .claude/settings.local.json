@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl:*)",
+      "Bash(npm install:*)",
+      "Bash(git add:*)",
+      "Bash(python3:*)",
+      "Bash(git commit:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(npm run:*)",
+      "Bash(grep:*)",
+      "Bash(npx shadcn@latest:*)",
+      "Bash(git mv:*)",
+      "Bash(git:*)",
+      "Bash(node:*)"
+    ]
+  }
+}

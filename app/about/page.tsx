@@ -15,7 +15,7 @@ export default function AboutPage() {
                         <motion.p
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="text-[#1B7A6E] uppercase tracking-[0.2em] mb-4 text-sm font-medium"
+                            className="text-primary uppercase tracking-[0.2em] mb-4 text-sm font-medium"
                         >
                             Our Heritage
                         </motion.p>

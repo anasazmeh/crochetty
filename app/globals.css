@@ -67,6 +67,8 @@
   --color-destructive-foreground: var(--destructive-foreground);
   --color-accent:               var(--accent);
   --color-accent-foreground:    var(--accent-foreground);
+  --color-popover:              var(--popover);
+  --color-popover-foreground:   var(--popover-foreground);
   --color-primary-foreground:   var(--primary-foreground);
   --color-input:                var(--input);
   --color-ring:                 var(--ring);

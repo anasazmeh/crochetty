@@ -124,7 +124,7 @@ export default function ProductDetailPage() {
                         className="flex flex-col"
                     >
                         <div className="mb-2">
-                            <span className="text-sm font-medium text-[#1B7A6E] bg-[#1B7A6E]/10 px-3 py-1 rounded-full">
+                            <span className="text-sm font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">
                                 {product.category}
                             </span>
                         </div>
@@ -171,8 +171,8 @@ export default function ProductDetailPage() {
                         {/* Features/Info Tags */}
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-10 border-t border-gray-100">
                             <div className="flex gap-4">
-                                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[#1B7A6E]/5 flex items-center justify-center">
-                                    <ShieldCheck className="w-5 h-5 text-[#1B7A6E]" />
+                                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center">
+                                    <ShieldCheck className="w-5 h-5 text-primary" />
                                 </div>
                                 <div>
                                     <h4 className="text-sm font-bold text-primary mb-1">Authentic Quality</h4>
@@ -180,8 +180,8 @@ export default function ProductDetailPage() {
                                 </div>
                             </div>
                             <div className="flex gap-4">
-                                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[#1B7A6E]/5 flex items-center justify-center">
-                                    <Truck className="w-5 h-5 text-[#1B7A6E]" />
+                                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center">
+                                    <Truck className="w-5 h-5 text-primary" />
                                 </div>
                                 <div>
                                     <h4 className="text-sm font-bold text-primary mb-1">Mindful Shipping</h4>

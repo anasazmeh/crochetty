@@ -14,7 +14,7 @@ export default function CustomOrdersPage() {
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        className="inline-flex items-center gap-2 bg-[#1B7A6E]/10 text-[#1B7A6E] px-4 py-1 rounded-full text-sm font-semibold mb-6"
+                        className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1 rounded-full text-sm font-semibold mb-6"
                     >
                         <Sparkles className="w-4 h-4" />
                         Bespoke Creations
@@ -65,8 +65,8 @@ export default function CustomOrdersPage() {
                             transition={{ delay: idx * 0.1 }}
                             className="bg-white p-10 rounded-2xl shadow-sm border border-gray-100 text-center"
                         >
-                            <div className="w-16 h-16 bg-[#1B7A6E]/5 rounded-full flex items-center justify-center mx-auto mb-6">
-                                <step.icon className="w-8 h-8 text-[#1B7A6E]" />
+                            <div className="w-16 h-16 bg-primary/5 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <step.icon className="w-8 h-8 text-primary" />
                             </div>
                             <h3 className="font-serif text-2xl text-primary mb-4">{step.title}</h3>
                             <p className="text-gray-500 leading-relaxed">{step.desc}</p>
@@ -94,16 +94,16 @@ export default function CustomOrdersPage() {
                                 <div className="grid sm:grid-cols-2 gap-6">
                                     <div className="space-y-2">
                                         <label className="text-sm font-bold text-primary">Full Name</label>
-                                        <input type="text" className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-[#1B7A6E]" placeholder="Jane Doe" />
+                                        <input type="text" className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-primary" placeholder="Jane Doe" />
                                     </div>
                                     <div className="space-y-2">
                                         <label className="text-sm font-bold text-primary">Email Address</label>
-                                        <input type="email" className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-[#1B7A6E]" placeholder="jane@example.com" />
+                                        <input type="email" className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-primary" placeholder="jane@example.com" />
                                     </div>
                                 </div>
                                 <div className="space-y-2">
                                     <label className="text-sm font-bold text-primary">What are you looking for?</label>
-                                    <textarea rows={4} className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-[#1B7A6E]" placeholder="Describe your dream piece..."></textarea>
+                                    <textarea rows={4} className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-primary" placeholder="Describe your dream piece..."></textarea>
                                 </div>
                                 <Button className="w-full rounded-lg h-14 text-lg">
                                     <Send className="w-5 h-5 mr-2" />

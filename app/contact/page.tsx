@@ -40,7 +40,7 @@ export default function ContactPage() {
                                     className="flex items-start gap-6"
                                 >
                                     <div className="w-12 h-12 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center justify-center flex-shrink-0">
-                                        <Mail className="w-6 h-6 text-[#1B7A6E]" />
+                                        <Mail className="w-6 h-6 text-primary" />
                                     </div>
                                     <div>
                                         <h3 className="text-sm font-bold text-primary mb-1 uppercase tracking-wider">Email Us</h3>
@@ -55,7 +55,7 @@ export default function ContactPage() {
                                     className="flex items-start gap-6"
                                 >
                                     <div className="w-12 h-12 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center justify-center flex-shrink-0">
-                                        <MapPin className="w-6 h-6 text-[#1B7A6E]" />
+                                        <MapPin className="w-6 h-6 text-primary" />
                                     </div>
                                     <div>
                                         <h3 className="text-sm font-bold text-primary mb-1 uppercase tracking-wider">Studio</h3>
@@ -70,13 +70,13 @@ export default function ContactPage() {
                                     className="flex items-start gap-6"
                                 >
                                     <div className="w-12 h-12 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center justify-center flex-shrink-0">
-                                        <Instagram className="w-6 h-6 text-[#1B7A6E]" />
+                                        <Instagram className="w-6 h-6 text-primary" />
                                     </div>
                                     <div>
                                         <h3 className="text-sm font-bold text-primary mb-1 uppercase tracking-wider">Follow Us</h3>
                                         <div className="flex gap-4 mt-2">
-                                            <a href="#" className="text-gray-400 hover:text-[#1B7A6E] transition-colors"><Instagram className="w-5 h-5" /></a>
-                                            <a href="#" className="text-gray-400 hover:text-[#1B7A6E] transition-colors"><Facebook className="w-5 h-5" /></a>
+                                            <a href="#" className="text-gray-400 hover:text-primary transition-colors"><Instagram className="w-5 h-5" /></a>
+                                            <a href="#" className="text-gray-400 hover:text-primary transition-colors"><Facebook className="w-5 h-5" /></a>
                                         </div>
                                     </div>
                                 </motion.div>
@@ -93,15 +93,15 @@ export default function ContactPage() {
                             <form className="space-y-6">
                                 <div className="space-y-2">
                                     <label className="text-sm font-bold text-primary">Your Name</label>
-                                    <input type="text" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-4 focus:outline-none focus:border-[#1B7A6E] transition-colors" placeholder="Name" />
+                                    <input type="text" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-4 focus:outline-none focus:border-primary transition-colors" placeholder="Name" />
                                 </div>
                                 <div className="space-y-2">
                                     <label className="text-sm font-bold text-primary">Email Address</label>
-                                    <input type="email" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-4 focus:outline-none focus:border-[#1B7A6E] transition-colors" placeholder="email@example.com" />
+                                    <input type="email" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-4 focus:outline-none focus:border-primary transition-colors" placeholder="email@example.com" />
                                 </div>
                                 <div className="space-y-2">
                                     <label className="text-sm font-bold text-primary">Subject</label>
-                                    <select className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-4 focus:outline-none focus:border-[#1B7A6E] transition-colors appearance-none">
+                                    <select className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-4 focus:outline-none focus:border-primary transition-colors appearance-none">
                                         <option>General Inquiry</option>
                                         <option>Order Support</option>
                                         <option>Wholesale</option>
@@ -110,7 +110,7 @@ export default function ContactPage() {
                                 </div>
                                 <div className="space-y-2">
                                     <label className="text-sm font-bold text-primary">Message</label>
-                                    <textarea rows={5} className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-4 focus:outline-none focus:border-[#1B7A6E] transition-colors" placeholder="How can we help you?"></textarea>
+                                    <textarea rows={5} className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-4 focus:outline-none focus:border-primary transition-colors" placeholder="How can we help you?"></textarea>
                                 </div>
                                 <Button className="w-full rounded-xl h-14 text-lg">
                                     Send Message

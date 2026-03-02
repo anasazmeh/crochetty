@@ -74,7 +74,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({ products }) => {
                                 <motion.button
                                     whileHover={{ scale: 1.1 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className="p-2 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:bg-[#1B7A6E]/10 dark:hover:bg-[#1B7A6E]/20 transition-colors"
+                                    className="p-2 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors"
                                     aria-label="Add to wishlist"
                                     onClick={(e) => {
                                         e.preventDefault();
@@ -86,7 +86,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({ products }) => {
                                 <motion.button
                                     whileHover={{ scale: 1.1 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className="p-2 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:bg-[#1B7A6E]/10 dark:hover:bg-[#1B7A6E]/20 transition-colors"
+                                    className="p-2 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors"
                                     aria-label="Add to cart"
                                     onClick={(e) => {
                                         e.preventDefault();
@@ -107,10 +107,10 @@ export const ProductGrid: React.FC<ProductGridProps> = ({ products }) => {
 
                         {/* Product Info */}
                         <div className="space-y-2">
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-[#1B7A6E] dark:group-hover:text-[#2A9D8F] transition-colors">
+                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-primary dark:group-hover:text-primary-light transition-colors">
                                 {product.name}
                             </h3>
-                            <p className="text-xl font-bold text-[#1B7A6E] dark:text-[#2A9D8F]">
+                            <p className="text-xl font-bold text-primary dark:text-primary-light">
                                 ${product.price.toFixed(2)}
                             </p>
                         </div>

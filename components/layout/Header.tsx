@@ -63,7 +63,7 @@ export const Header = () => {
                             <Link
                                 key={link.name}
                                 href={link.href}
-                                className="text-gray-700 dark:text-gray-300 hover:text-[#1B7A6E] dark:hover:text-[#2A9D8F] transition-colors font-medium"
+                                className="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light transition-colors font-medium"
                             >
                                 {link.name}
                             </Link>
@@ -76,7 +76,7 @@ export const Header = () => {
                         <motion.button
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.95 }}
-                            className="hidden sm:block text-gray-700 dark:text-gray-300 hover:text-[#1B7A6E] transition-colors"
+                            className="hidden sm:block text-gray-700 dark:text-gray-300 hover:text-primary transition-colors"
                             aria-label="Search"
                         >
                             <Search className="w-5 h-5" />
@@ -86,7 +86,7 @@ export const Header = () => {
                         <motion.button
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.95 }}
-                            className="hidden sm:block text-gray-700 dark:text-gray-300 hover:text-[#1B7A6E] transition-colors"
+                            className="hidden sm:block text-gray-700 dark:text-gray-300 hover:text-primary transition-colors"
                             aria-label="Wishlist"
                         >
                             <Heart className="w-5 h-5" />
@@ -96,7 +96,7 @@ export const Header = () => {
                         <motion.button
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.95 }}
-                            className="hidden sm:block text-gray-700 dark:text-gray-300 hover:text-[#1B7A6E] transition-colors"
+                            className="hidden sm:block text-gray-700 dark:text-gray-300 hover:text-primary transition-colors"
                             aria-label="Account"
                         >
                             <User className="w-5 h-5" />
@@ -106,7 +106,7 @@ export const Header = () => {
                         <motion.button
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.95 }}
-                            className="relative text-gray-700 dark:text-gray-300 hover:text-[#1B7A6E] transition-colors"
+                            className="relative text-gray-700 dark:text-gray-300 hover:text-primary transition-colors"
                             aria-label="Shopping Cart"
                         >
                             <ShoppingCart className="w-5 h-5" />
@@ -114,7 +114,7 @@ export const Header = () => {
                                 <motion.span
                                     initial={{ scale: 0 }}
                                     animate={{ scale: 1 }}
-                                    className="absolute -top-2 -right-2 bg-gradient-to-r from-[#1B7A6E] to-[#2A9D8F] text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center"
+                                    className="absolute -top-2 -right-2 bg-gradient-to-r from-primary to-primary-light text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center"
                                 >
                                     {cartItemCount}
                                 </motion.span>
@@ -150,21 +150,21 @@ export const Header = () => {
                                     key={link.name}
                                     href={link.href}
                                     onClick={() => setIsMobileMenuOpen(false)}
-                                    className="block text-gray-700 dark:text-gray-300 hover:text-[#1B7A6E] dark:hover:text-[#2A9D8F] transition-colors font-medium py-2"
+                                    className="block text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light transition-colors font-medium py-2"
                                 >
                                     {link.name}
                                 </Link>
                             ))}
                             <div className="pt-4 border-t border-gray-200 dark:border-gray-800 flex gap-4">
-                                <button className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-[#1B7A6E] transition-colors">
+                                <button className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-primary transition-colors">
                                     <Search className="w-5 h-5" />
                                     <span>Search</span>
                                 </button>
-                                <button className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-[#1B7A6E] transition-colors">
+                                <button className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-primary transition-colors">
                                     <Heart className="w-5 h-5" />
                                     <span>Wishlist</span>
                                 </button>
-                                <button className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-[#1B7A6E] transition-colors">
+                                <button className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-primary transition-colors">
                                     <User className="w-5 h-5" />
                                     <span>Account</span>
                                 </button>
