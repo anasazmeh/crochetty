@@ -6,7 +6,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ShoppingCart, Heart, ArrowLeft, Star, ShieldCheck, Truck } from "lucide-react";
 import { getProductById, getStorageUrl, Product } from "@/lib/api";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/CartContext";
 
 export default function ProductDetailPage() {

@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Hammer, Palette, Clock, Send, Sparkles } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 
 export default function CustomOrdersPage() {
     return (

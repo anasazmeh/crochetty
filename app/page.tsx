@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { ProductGrid } from "@/components/shop/ProductGrid";
 import Link from "next/link";
 

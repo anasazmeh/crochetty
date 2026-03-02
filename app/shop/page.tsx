@@ -1,7 +1,7 @@
 'use client';
 
 import { ProductGrid } from "@/components/shop/ProductGrid";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 
 import { useEffect, useState } from "react";
 import { getProducts, Product } from "@/lib/api";

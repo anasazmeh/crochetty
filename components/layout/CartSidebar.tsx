@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Minus, Plus, ShoppingBag } from "lucide-react";
 import Image from "next/image";
 import { useCart } from "@/context/CartContext";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 
 export function CartSidebar() {
     const { cartOpen, closeCart, items, removeItem } = useCart();
