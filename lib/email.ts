@@ -1,12 +1,15 @@
 import { Resend } from "resend";
 import type { Order } from "@/lib/db/schema";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
 const FROM = "Crochetty <orders@crochetty.com>";
 const ADMIN_EMAIL = "hello@crochetty.com";
 
+function getResend() {
+  return new Resend(process.env.RESEND_API_KEY);
+}
+
 export async function sendOrderConfirmation(email: string, order: Order) {
-  await resend.emails.send({
+  await getResend().emails.send({
     from: FROM,
     to: email,
     subject: `Your Crochetty order is confirmed 🧶`,
@@ -41,7 +44,7 @@ export async function sendCustomOrderNotification(data: {
   budget?: string;
 }) {
   // Notify admin
-  await resend.emails.send({
+  await getResend().emails.send({
     from: FROM,
     to: ADMIN_EMAIL,
     subject: `New custom order request from ${data.name}`,
@@ -57,7 +60,7 @@ export async function sendCustomOrderNotification(data: {
   });
 
   // Confirm to customer
-  await resend.emails.send({
+  await getResend().emails.send({
     from: FROM,
     to: data.email,
     subject: "We received your custom order request 🧶",
