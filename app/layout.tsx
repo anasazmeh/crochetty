@@ -30,6 +30,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${playfair.variable} ${montserrat.variable} antialiased`}
+        suppressHydrationWarning
       >
         <CartProvider>
           <Header />

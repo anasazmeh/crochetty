@@ -26,10 +26,12 @@ export default function Home() {
     const fetchFeatured = async () => {
       try {
         const res = await fetch("/api/products/featured");
+        if (!res.ok) throw new Error(`API error ${res.status}`);
         const data = await res.json();
-        setFeaturedProducts(data);
+        setFeaturedProducts(Array.isArray(data) ? data : []);
       } catch (error) {
         console.error("Failed to fetch featured products:", error);
+        setFeaturedProducts([]);
       } finally {
         setLoading(false);
       }
