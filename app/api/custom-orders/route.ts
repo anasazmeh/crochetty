@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Invalid email address" }, { status: 400 });
   }
 
-  if (name.length > 200 || description.length > 5000 || (budget && budget.length > 100)) {
+  if (name.length > 200 || email.length > 254 || description.length > 5000 || (budget && budget.length > 100)) {
     return NextResponse.json({ error: "Field too long" }, { status: 400 });
   }
 
