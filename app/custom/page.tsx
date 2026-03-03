@@ -16,17 +16,22 @@ export default function CustomOrderPage() {
     e.preventDefault();
     setLoading(true);
     setError("");
-    const res = await fetch("/api/custom-orders", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    });
-    if (res.ok) {
-      setSubmitted(true);
-    } else {
-      setError("Something went wrong. Please try again.");
+    try {
+      const res = await fetch("/api/custom-orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        setError("Something went wrong. Please try again.");
+      }
+    } catch {
+      setError("Network error. Please check your connection and try again.");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   if (submitted) {
