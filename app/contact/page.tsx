@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Instagram, Facebook } from "lucide-react";
+import { Mail, MapPin, Instagram, Facebook } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function ContactPage() {
@@ -19,7 +19,7 @@ export default function ContactPage() {
                                     animate={{ opacity: 1, y: 0 }}
                                     className="font-serif text-5xl text-primary mb-6"
                                 >
-                                    Let's Connect.
+                                    Let&apos;s Connect.
                                 </motion.h1>
                                 <motion.p
                                     initial={{ opacity: 0, y: 20 }}
@@ -28,7 +28,7 @@ export default function ContactPage() {
                                     className="text-gray-600 text-lg leading-relaxed"
                                 >
                                     Have a question about an order, or just want to say hello?
-                                    We're here to help you find the perfect handcrafted piece.
+                                    We&apos;re here to help you find the perfect handcrafted piece.
                                 </motion.p>
                             </div>
 

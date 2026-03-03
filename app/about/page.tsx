@@ -33,8 +33,8 @@ export default function AboutPage() {
                             transition={{ delay: 0.4 }}
                             className="text-gray-600 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto italic"
                         >
-                            "In a world of fast fashion, we choose the rhythm of the needle.
-                            Each piece is a testament to the beauty of patience and the art of the stitch."
+                            &ldquo;In a world of fast fashion, we choose the rhythm of the needle.
+                            Each piece is a testament to the beauty of patience and the art of the stitch.&rdquo;
                         </motion.p>
                     </div>
                 </section>
@@ -64,7 +64,7 @@ export default function AboutPage() {
                             <h2 className="font-serif text-3xl text-primary mb-4">Pure Intention</h2>
                             <p className="text-gray-600 leading-relaxed">
                                 Crochetty was born from a desire to bring soul back into our wardrobes.
-                                We don't believe in mass production. Instead, we focus on limited runs
+                                We don&apos;t believe in mass production. Instead, we focus on limited runs
                                 and one-of-a-kind treasures that resonate with a sense of place and purpose.
                             </p>
                         </div>

@@ -85,7 +85,7 @@ export default async function ProductDetailPage({ params }: Props) {
             </p>
             {product.description && (
               <p className="text-muted-foreground leading-relaxed mb-8 text-lg italic">
-                "{product.description}"
+                &ldquo;{product.description}&rdquo;
               </p>
             )}
 

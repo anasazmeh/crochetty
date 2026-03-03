@@ -41,7 +41,7 @@ export default function CustomOrderPage() {
           <p className="text-5xl mb-6">🧶</p>
           <h2 className="font-serif text-3xl text-primary mb-4">Request Received</h2>
           <p className="text-muted-foreground">
-            Thank you! We'll review your request and get back to you within 2–3 business days.
+            Thank you! We&apos;ll review your request and get back to you within 2&ndash;3 business days.
           </p>
         </div>
       </div>
@@ -53,7 +53,7 @@ export default function CustomOrderPage() {
       <div className="container mx-auto px-6 max-w-xl">
         <h1 className="font-serif text-4xl text-primary mb-4 text-center">Custom Order</h1>
         <p className="text-muted-foreground text-center mb-12">
-          Tell us what you have in mind and we'll craft it just for you.
+          Tell us what you have in mind and we&apos;ll craft it just for you.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-6 bg-white p-8 rounded-2xl shadow-sm">
