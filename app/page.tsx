@@ -9,15 +9,6 @@ import { useEffect, useState } from "react";
 import type { Product } from "@/lib/db/schema";
 import { ArrowRight, Star, Leaf, Package, MessageCircle } from "lucide-react";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  show: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, delay: i * 0.15, ease: "easeOut" as const },
-  }),
-};
-
 export default function Home() {
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
@@ -41,76 +32,73 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen">
+
       {/* ── Hero ── */}
-      <section className="relative min-h-[90vh] flex items-center bg-[#F7F5F1] overflow-hidden">
-        {/* Subtle linen texture */}
+      <section className="relative bg-[#F7F5F1] overflow-hidden min-h-[88vh] flex flex-col justify-center">
+
+        {/* Subtle grid texture */}
         <div
           aria-hidden
-          className="absolute inset-0 opacity-[0.03]"
+          className="pointer-events-none absolute inset-0 opacity-[0.035]"
           style={{
-            backgroundImage: `repeating-linear-gradient(
-              0deg, transparent, transparent 2px, #1B5C32 2px, #1B5C32 3px
-            ), repeating-linear-gradient(
-              90deg, transparent, transparent 8px, #1B5C32 8px, #1B5C32 9px
-            )`,
+            backgroundImage:
+              "repeating-linear-gradient(0deg,transparent,transparent 28px,#1B5C32 28px,#1B5C32 29px),repeating-linear-gradient(90deg,transparent,transparent 28px,#1B5C32 28px,#1B5C32 29px)",
           }}
         />
 
-        {/* Decorative circle accent */}
+        {/* Decorative circle — right, clipped */}
         <div
           aria-hidden
-          className="absolute -right-32 top-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-primary/10"
+          className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/3 w-[560px] h-[560px] rounded-full border border-primary/10"
         />
         <div
           aria-hidden
-          className="absolute -right-20 top-1/2 -translate-y-1/2 w-[440px] h-[440px] rounded-full border border-primary/8"
+          className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-[400px] h-[400px] rounded-full border border-primary/8"
         />
 
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 w-full">
-          <div className="max-w-3xl">
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-20">
+          <div className="max-w-2xl">
+
             <motion.p
-              custom={0}
-              initial="hidden"
-              animate="show"
-              variants={fadeUp}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
               className="text-primary/60 uppercase tracking-[0.25em] text-xs font-medium mb-6"
             >
               Slow Luxury · Handcrafted in Belgium
             </motion.p>
 
             <motion.h1
-              custom={1}
-              initial="hidden"
-              animate="show"
-              variants={fadeUp}
-              className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-primary leading-[1.05] mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="font-serif text-5xl sm:text-6xl md:text-7xl text-primary leading-[1.05] mb-8"
             >
               The Art of <br />
               <em className="not-italic text-primary-light">the Stitch.</em>
             </motion.h1>
 
             <motion.p
-              custom={2}
-              initial="hidden"
-              animate="show"
-              variants={fadeUp}
-              className="text-foreground/60 text-lg leading-relaxed mb-10 max-w-xl"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-foreground/60 text-base sm:text-lg leading-relaxed mb-10 max-w-lg"
             >
-              Each piece carries the warmth of hands, the patience of craft, and
-              the intention of love. No mass production — just pure, slow luxury.
+              Each piece carries the warmth of hands, the patience of craft,
+              and the intention of love. No mass production — just pure, slow luxury.
             </motion.p>
 
             <motion.div
-              custom={3}
-              initial="hidden"
-              animate="show"
-              variants={fadeUp}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
               className="flex flex-wrap gap-4 items-center"
             >
               <Link href="/shop">
                 <Button
                   size="lg"
-                  className="rounded-full px-8 bg-primary text-white hover:bg-primary-dark transition-colors duration-200 shadow-md hover:shadow-lg cursor-pointer"
+                  className="rounded-full px-8 bg-primary text-white hover:bg-primary-dark shadow-sm transition-colors cursor-pointer"
                 >
                   Shop Collection
                   <ArrowRight className="ml-2 w-4 h-4" />
@@ -127,13 +115,12 @@ export default function Home() {
               </Link>
             </motion.div>
 
-            {/* Social proof strip */}
+            {/* Social proof */}
             <motion.div
-              custom={4}
-              initial="hidden"
-              animate="show"
-              variants={fadeUp}
-              className="flex items-center gap-6 mt-14"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="flex items-center gap-5 mt-14"
             >
               <div className="flex -space-x-2">
                 {[1, 2, 3, 4].map((i) => (
@@ -146,24 +133,23 @@ export default function Home() {
                 ))}
               </div>
               <div>
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-0.5">
                   {[1, 2, 3, 4, 5].map((s) => (
                     <Star key={s} className="w-3.5 h-3.5 fill-accent-gold text-accent-gold" />
                   ))}
                 </div>
-                <p className="text-xs text-foreground/50 mt-0.5">
-                  Loved by 200+ happy customers
-                </p>
+                <p className="text-xs text-foreground/50 mt-0.5">Loved by 200+ happy customers</p>
               </div>
             </motion.div>
+
           </div>
         </div>
       </section>
 
       {/* ── Trust bar ── */}
-      <section className="bg-primary text-white py-5">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-16 text-sm">
+      <section className="bg-primary text-white py-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-14 text-sm">
             {[
               { icon: Leaf, text: "Ethically sourced yarn" },
               { icon: Package, text: "Handpacked with care" },
@@ -171,8 +157,8 @@ export default function Home() {
               { icon: Star, text: "5-star rated pieces" },
             ].map(({ icon: Icon, text }) => (
               <div key={text} className="flex items-center gap-2 opacity-90">
-                <Icon className="w-4 h-4 text-accent-gold flex-shrink-0" />
-                <span className="tracking-wide">{text}</span>
+                <Icon className="w-4 h-4 text-accent-gold shrink-0" />
+                <span className="tracking-wide text-sm">{text}</span>
               </div>
             ))}
           </div>
@@ -180,18 +166,19 @@ export default function Home() {
       </section>
 
       {/* ── Featured Products ── */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-14 gap-4">
+      <section className="py-20 sm:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
             <div>
               <p className="text-primary/50 uppercase tracking-[0.2em] text-xs mb-3">
                 Curated Selection
               </p>
-              <h2 className="font-serif text-3xl md:text-4xl text-primary">
-                Featured Pieces
-              </h2>
+              <h2 className="font-serif text-3xl md:text-4xl text-primary">Featured Pieces</h2>
             </div>
-            <Link href="/shop" className="text-primary/60 hover:text-primary text-sm font-medium flex items-center gap-1 transition-colors cursor-pointer">
+            <Link
+              href="/shop"
+              className="text-primary/60 hover:text-primary text-sm font-medium flex items-center gap-1 transition-colors cursor-pointer"
+            >
               View all <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
@@ -200,7 +187,7 @@ export default function Home() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {[1, 2, 3, 4].map((i) => (
                 <div key={i} className="animate-pulse">
-                  <div className="aspect-square bg-muted rounded-xl mb-4" />
+                  <div className="aspect-square bg-muted rounded-2xl mb-4" />
                   <div className="h-4 bg-muted rounded w-3/4 mb-2" />
                   <div className="h-3 bg-muted rounded w-1/3" />
                 </div>
@@ -210,7 +197,7 @@ export default function Home() {
             <ProductGrid products={featuredProducts} />
           )}
 
-          <div className="text-center mt-16">
+          <div className="text-center mt-14">
             <Link href="/shop">
               <Button
                 variant="outline"
@@ -225,16 +212,16 @@ export default function Home() {
       </section>
 
       {/* ── Brand Story ── */}
-      <section className="py-24 bg-[#F7F5F1]">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Logo / visual */}
+      <section className="py-20 sm:py-24 bg-[#F7F5F1]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+            {/* Logo card */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.97 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="relative"
+              transition={{ duration: 0.7 }}
             >
               <div className="bg-accent-cream/60 rounded-3xl p-10 sm:p-14 flex items-center justify-center">
                 <Image
@@ -242,30 +229,23 @@ export default function Home() {
                   alt="Crochetty — handcrafted crochet boutique"
                   width={480}
                   height={224}
-                  className="object-contain w-full max-w-[420px] drop-shadow-lg"
+                  className="object-contain w-full max-w-[400px] drop-shadow-lg"
                 />
               </div>
-              {/* Decorative blob */}
-              <div
-                aria-hidden
-                className="absolute -bottom-6 -right-6 w-28 h-28 rounded-full bg-accent-gold/20 -z-10"
-              />
             </motion.div>
 
             {/* Copy */}
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.7, delay: 0.1 }}
             >
-              <p className="text-primary/50 uppercase tracking-[0.25em] text-xs mb-4">
-                Our Story
-              </p>
+              <p className="text-primary/50 uppercase tracking-[0.25em] text-xs mb-4">Our Story</p>
               <h2 className="font-serif text-3xl md:text-5xl text-primary mb-6 leading-tight">
                 Sustainable &<br /> Soulful.
               </h2>
-              <p className="text-foreground/60 leading-relaxed mb-6 text-base">
+              <p className="text-foreground/60 leading-relaxed mb-5 text-base">
                 We believe in the beauty of slowness. Every piece begins with
                 ethically sourced yarn, shaped by patient hands, and finished
                 with care that no machine can replicate.
@@ -275,12 +255,9 @@ export default function Home() {
                 timeless tradition of needlework — made for people who value
                 the extraordinary in the everyday.
               </p>
-
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-wrap gap-3">
                 <Link href="/about">
-                  <Button
-                    className="rounded-full px-8 bg-primary text-white hover:bg-primary-dark transition-colors cursor-pointer"
-                  >
+                  <Button className="rounded-full px-8 bg-primary text-white hover:bg-primary-dark transition-colors cursor-pointer">
                     Read Our Story
                   </Button>
                 </Link>
@@ -294,31 +271,29 @@ export default function Home() {
                 </Link>
               </div>
             </motion.div>
+
           </div>
         </div>
       </section>
 
       {/* ── Newsletter CTA ── */}
-      <section className="py-20 bg-primary text-white">
-        <div className="max-w-2xl mx-auto px-6 text-center">
+      <section className="py-16 sm:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
+            className="bg-primary rounded-3xl px-8 py-14 sm:px-16 text-white text-center max-w-2xl mx-auto"
           >
-            <p className="text-white/50 uppercase tracking-[0.2em] text-xs mb-4">
-              Stay Connected
-            </p>
-            <h2 className="font-serif text-3xl md:text-4xl mb-4">
-              Join the Crochetty Family
-            </h2>
-            <p className="text-white/70 mb-8 leading-relaxed">
+            <p className="text-white/50 uppercase tracking-[0.2em] text-xs mb-4">Stay Connected</p>
+            <h2 className="font-serif text-3xl md:text-4xl mb-4">Join the Crochetty Family</h2>
+            <p className="text-white/70 mb-8 leading-relaxed text-sm sm:text-base">
               New arrivals, exclusive offers, and behind-the-scenes stories —
               straight to your inbox.
             </p>
             <form
-              className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
+              className="flex flex-col sm:flex-row gap-3 max-w-sm mx-auto"
               onSubmit={(e) => e.preventDefault()}
             >
               <input
@@ -329,7 +304,7 @@ export default function Home() {
               />
               <Button
                 type="submit"
-                className="rounded-full px-7 bg-accent-gold text-foreground font-medium hover:bg-accent-gold/90 transition-colors shrink-0 cursor-pointer"
+                className="rounded-full px-7 bg-accent-gold text-foreground font-medium hover:bg-[#b8912a] transition-colors shrink-0 cursor-pointer"
               >
                 Subscribe
               </Button>
@@ -337,6 +312,7 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
     </div>
   );
 }
