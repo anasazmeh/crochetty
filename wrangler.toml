@@ -10,8 +10,8 @@ bucket_name = "crochetty-media"
 
 [[kv_namespaces]]
 binding = "NEXT_INC_CACHE_KV"
-id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
-preview_id = "REPLACE_WITH_YOUR_PREVIEW_KV_NAMESPACE_ID"
+id = "df5e59c6bb8b4fdab2d8310bf5f86197"
+preview_id = "e9c66637a2344443a79c3aa5b9536e4b"
 
 # Note: NEXT_PUBLIC_* variables are inlined at build time by Next.js and cannot
 # be set at runtime via wrangler.toml [vars]. Set NEXT_PUBLIC_APP_URL in
