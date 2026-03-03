@@ -1,119 +1,86 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
-import { Hammer, Palette, Clock, Send, Sparkles } from "lucide-react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 
-export default function CustomOrdersPage() {
+export default function CustomOrderPage() {
+  const [form, setForm] = useState({ name: "", email: "", description: "", budget: "" });
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+    const res = await fetch("/api/custom-orders", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+    if (res.ok) {
+      setSubmitted(true);
+    } else {
+      setError("Something went wrong. Please try again.");
+    }
+    setLoading(false);
+  };
+
+  if (submitted) {
     return (
-        <div className="min-h-screen bg-[#FDFCFB] pt-24 pb-16">
-            <div className="container mx-auto px-6">
-                {/* Header */}
-                <div className="max-w-3xl mx-auto text-center mb-20">
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1 rounded-full text-sm font-semibold mb-6"
-                    >
-                        <Sparkles className="w-4 h-4" />
-                        Bespoke Creations
-                    </motion.div>
-                    <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                        className="font-serif text-5xl md:text-6xl text-primary mb-8"
-                    >
-                        Your Vision, <br /> Our Craft.
-                    </motion.h1>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="text-gray-600 text-lg leading-relaxed"
-                    >
-                        Whether it's a specific colorway, a unique size, or a completely new creation,
-                        we love bringing bespoke ideas to life. Let's create something timeless together.
-                    </motion.p>
-                </div>
-
-                {/* Process Steps */}
-                <div className="grid md:grid-cols-3 gap-12 mb-24">
-                    {[
-                        {
-                            icon: Palette,
-                            title: "1. Consultation",
-                            desc: "Share your ideas, color preferences, and measurements with us."
-                        },
-                        {
-                            icon: Hammer,
-                            title: "2. Creation",
-                            desc: "We meticulously hand-crochet your piece using premium, sustainable fibers."
-                        },
-                        {
-                            icon: Clock,
-                            title: "3. Delivery",
-                            desc: "Once perfected, your custom piece is carefully packed and shipped to its new home."
-                        }
-                    ].map((step, idx) => (
-                        <motion.div
-                            key={idx}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: idx * 0.1 }}
-                            className="bg-white p-10 rounded-2xl shadow-sm border border-gray-100 text-center"
-                        >
-                            <div className="w-16 h-16 bg-primary/5 rounded-full flex items-center justify-center mx-auto mb-6">
-                                <step.icon className="w-8 h-8 text-primary" />
-                            </div>
-                            <h3 className="font-serif text-2xl text-primary mb-4">{step.title}</h3>
-                            <p className="text-gray-500 leading-relaxed">{step.desc}</p>
-                        </motion.div>
-                    ))}
-                </div>
-
-                {/* Inquiry Form Teaser */}
-                <section className="max-w-4xl mx-auto">
-                    <div className="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row border border-gray-100">
-                        <div className="md:w-1/3 bg-primary p-12 text-white flex flex-col justify-center">
-                            <h2 className="font-serif text-3xl mb-6">Send an Inquiry</h2>
-                            <p className="text-white/70 mb-8 leading-relaxed">
-                                Please allow 48 hours for us to respond with a quote and timeframe.
-                            </p>
-                            <div className="space-y-4">
-                                <div className="flex items-center gap-3 text-sm">
-                                    <div className="w-2 h-2 rounded-full bg-green-400"></div>
-                                    Currently accepting orders
-                                </div>
-                            </div>
-                        </div>
-                        <div className="md:w-2/3 p-12">
-                            <form className="space-y-6">
-                                <div className="grid sm:grid-cols-2 gap-6">
-                                    <div className="space-y-2">
-                                        <label className="text-sm font-bold text-primary">Full Name</label>
-                                        <input type="text" className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-primary" placeholder="Jane Doe" />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <label className="text-sm font-bold text-primary">Email Address</label>
-                                        <input type="email" className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-primary" placeholder="jane@example.com" />
-                                    </div>
-                                </div>
-                                <div className="space-y-2">
-                                    <label className="text-sm font-bold text-primary">What are you looking for?</label>
-                                    <textarea rows={4} className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-primary" placeholder="Describe your dream piece..."></textarea>
-                                </div>
-                                <Button className="w-full rounded-lg h-14 text-lg">
-                                    <Send className="w-5 h-5 mr-2" />
-                                    Submit Inquiry
-                                </Button>
-                            </form>
-                        </div>
-                    </div>
-                </section>
-            </div>
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="text-center max-w-md px-6">
+          <p className="text-5xl mb-6">🧶</p>
+          <h2 className="font-serif text-3xl text-primary mb-4">Request Received</h2>
+          <p className="text-muted-foreground">
+            Thank you! We'll review your request and get back to you within 2–3 business days.
+          </p>
         </div>
+      </div>
     );
+  }
+
+  return (
+    <div className="min-h-screen bg-background pt-32 pb-24">
+      <div className="container mx-auto px-6 max-w-xl">
+        <h1 className="font-serif text-4xl text-primary mb-4 text-center">Custom Order</h1>
+        <p className="text-muted-foreground text-center mb-12">
+          Tell us what you have in mind and we'll craft it just for you.
+        </p>
+
+        <form onSubmit={handleSubmit} className="space-y-6 bg-white p-8 rounded-2xl shadow-sm">
+          <div className="space-y-1">
+            <Label htmlFor="name">Your Name</Label>
+            <Input id="name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required />
+          </div>
+          <div className="space-y-1">
+            <Label htmlFor="email">Email Address</Label>
+            <Input id="email" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required />
+          </div>
+          <div className="space-y-1">
+            <Label htmlFor="description">Describe Your Request</Label>
+            <Textarea
+              id="description"
+              rows={5}
+              placeholder="What would you like made? Include details like colors, size, occasion…"
+              value={form.description}
+              onChange={(e) => setForm({ ...form, description: e.target.value })}
+              required
+            />
+          </div>
+          <div className="space-y-1">
+            <Label htmlFor="budget">Budget (optional)</Label>
+            <Input id="budget" placeholder="e.g. €50–€100" value={form.budget} onChange={(e) => setForm({ ...form, budget: e.target.value })} />
+          </div>
+          {error && <p className="text-destructive text-sm">{error}</p>}
+          <Button type="submit" disabled={loading} className="w-full rounded-full bg-primary hover:bg-primary-light h-12">
+            {loading ? "Sending…" : "Submit Request"}
+          </Button>
+        </form>
+      </div>
+    </div>
+  );
 }
