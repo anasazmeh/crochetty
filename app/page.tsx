@@ -1,13 +1,33 @@
 'use client';
 
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { ProductGrid } from "@/components/shop/ProductGrid";
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import type { Product } from "@/lib/db/schema";
-import { ArrowRight, Star, Leaf, Package, MessageCircle } from "lucide-react";
+import { ArrowRight, Star, Leaf, Package, MessageCircleHeart, Sparkles } from "lucide-react";
+import { WordRotate } from "@/components/magicui/word-rotate";
+import { NumberTicker } from "@/components/magicui/number-ticker";
+import { ShimmerButton } from "@/components/magicui/shimmer-button";
+
+/* ─── shared wrapper ─────────────────────────────────────────────── */
+function Container({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  return (
+    <div className={`w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 ${className}`}>
+      {children}
+    </div>
+  );
+}
+
+/* ─── section label ──────────────────────────────────────────────── */
+function Label({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="uppercase tracking-[0.3em] text-[10px] font-semibold text-primary/40 mb-4">
+      {children}
+    </p>
+  );
+}
 
 export default function Home() {
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
@@ -20,8 +40,7 @@ export default function Home() {
         if (!res.ok) throw new Error(`API error ${res.status}`);
         const data = await res.json();
         setFeaturedProducts(Array.isArray(data) ? data : []);
-      } catch (error) {
-        console.error("Failed to fetch featured products:", error);
+      } catch {
         setFeaturedProducts([]);
       } finally {
         setLoading(false);
@@ -31,155 +50,175 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div>
 
-      {/* ── Hero ── */}
-      <section className="relative bg-[#F7F5F1] overflow-hidden min-h-[88vh] flex flex-col justify-center">
+      {/* ══════════════════════════════════════════════════════════
+          HERO
+      ══════════════════════════════════════════════════════════ */}
+      <section className="relative bg-[#F7F5F1] min-h-[calc(100vh-5rem)]">
 
-        {/* Subtle grid texture */}
+        {/* Dot pattern background */}
+        <svg
+          aria-hidden
+          className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.18]"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <pattern id="dots" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+              <circle cx="1.5" cy="1.5" r="1.5" fill="#1B5C32" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#dots)" />
+        </svg>
+
+        {/* Warm radial glow */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-[0.035]"
+          className="pointer-events-none absolute inset-0"
           style={{
-            backgroundImage:
-              "repeating-linear-gradient(0deg,transparent,transparent 28px,#1B5C32 28px,#1B5C32 29px),repeating-linear-gradient(90deg,transparent,transparent 28px,#1B5C32 28px,#1B5C32 29px)",
+            background: "radial-gradient(ellipse 70% 60% at 30% 50%, rgba(240,232,208,0.55) 0%, transparent 70%)",
           }}
         />
 
-        {/* Decorative circle — right, clipped */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/3 w-[560px] h-[560px] rounded-full border border-primary/10"
-        />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-[400px] h-[400px] rounded-full border border-primary/8"
-        />
+        {/* Content — table layout for perfect vertical centering */}
+        <div className="relative z-10 flex min-h-[calc(100vh-5rem)] flex-col justify-center">
+          <Container className="py-28 lg:py-36">
+            <div style={{ maxWidth: 680 }}>
 
-        {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-20">
-          <div className="max-w-2xl">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7 }}
+              >
+                <Label>Slow Luxury · Handcrafted in Belgium</Label>
+              </motion.div>
 
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-primary/60 uppercase tracking-[0.25em] text-xs font-medium mb-6"
-            >
-              Slow Luxury · Handcrafted in Belgium
-            </motion.p>
+              <motion.h1
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+                className="font-serif text-[clamp(3rem,7vw,6rem)] text-primary leading-[1.04] tracking-tight mb-6"
+              >
+                The Art of
+                <br />
+                <span className="text-primary-light italic">
+                  <WordRotate
+                    words={["the Stitch.", "the Hook.", "the Craft.", "the Gift."]}
+                    duration={3000}
+                    className="inline-block"
+                  />
+                </span>
+              </motion.h1>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              className="font-serif text-5xl sm:text-6xl md:text-7xl text-primary leading-[1.05] mb-8"
-            >
-              The Art of <br />
-              <em className="not-italic text-primary-light">the Stitch.</em>
-            </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.25 }}
+                className="text-foreground/55 text-lg sm:text-xl leading-[1.75] mb-12 max-w-[520px]"
+              >
+                Each piece carries the warmth of hands, the patience of craft, and the intention of love.
+                No mass production — just pure, slow luxury.
+              </motion.p>
 
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-foreground/60 text-base sm:text-lg leading-relaxed mb-10 max-w-lg"
-            >
-              Each piece carries the warmth of hands, the patience of craft,
-              and the intention of love. No mass production — just pure, slow luxury.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-wrap gap-4 items-center"
-            >
-              <Link href="/shop">
-                <Button
-                  size="lg"
-                  className="rounded-full px-8 bg-primary text-white hover:bg-primary-dark shadow-sm transition-colors cursor-pointer"
-                >
-                  Shop Collection
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-              </Link>
-              <Link href="/custom">
-                <Button
-                  variant="ghost"
-                  size="lg"
-                  className="rounded-full px-8 text-primary hover:bg-primary/8 transition-colors cursor-pointer"
-                >
-                  Custom Order
-                </Button>
-              </Link>
-            </motion.div>
-
-            {/* Social proof */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex items-center gap-5 mt-14"
-            >
-              <div className="flex -space-x-2">
-                {[1, 2, 3, 4].map((i) => (
-                  <div
-                    key={i}
-                    className="w-9 h-9 rounded-full bg-accent-cream border-2 border-[#F7F5F1] flex items-center justify-center text-primary text-xs font-bold"
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="flex flex-wrap items-center gap-4"
+              >
+                <Link href="/shop">
+                  <ShimmerButton
+                    background="var(--color-primary)"
+                    className="text-sm font-medium tracking-wide h-[52px] px-9 gap-2.5"
                   >
-                    {i}
-                  </div>
-                ))}
-              </div>
-              <div>
-                <div className="flex items-center gap-0.5">
-                  {[1, 2, 3, 4, 5].map((s) => (
-                    <Star key={s} className="w-3.5 h-3.5 fill-accent-gold text-accent-gold" />
-                  ))}
-                </div>
-                <p className="text-xs text-foreground/50 mt-0.5">Loved by 200+ happy customers</p>
-              </div>
-            </motion.div>
+                    Shop Collection <ArrowRight className="w-4 h-4" />
+                  </ShimmerButton>
+                </Link>
 
-          </div>
+                <Link href="/custom">
+                  <button className="h-[52px] px-9 rounded-full border border-primary/25 text-primary text-sm font-medium tracking-wide hover:bg-primary/6 hover:border-primary/40 transition-all duration-300 cursor-pointer">
+                    Commission a Piece
+                  </button>
+                </Link>
+              </motion.div>
+
+              {/* Stats */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.65 }}
+                className="mt-16 flex items-center gap-10 border-t border-primary/10 pt-10"
+              >
+                <div>
+                  <p className="font-serif text-3xl text-primary leading-none">
+                    <NumberTicker value={200} className="text-primary" />+
+                  </p>
+                  <p className="text-xs text-foreground/45 mt-1.5 tracking-wide">Happy customers</p>
+                </div>
+                <div className="w-px h-8 bg-primary/15" />
+                <div>
+                  <div className="flex items-center gap-1">
+                    {[1,2,3,4,5].map(s => (
+                      <Star key={s} className="w-4 h-4 fill-accent-gold text-accent-gold" />
+                    ))}
+                  </div>
+                  <p className="text-xs text-foreground/45 mt-1.5 tracking-wide">5-star rated</p>
+                </div>
+                <div className="w-px h-8 bg-primary/15" />
+                <div>
+                  <p className="font-serif text-3xl text-primary leading-none">
+                    <NumberTicker value={100} className="text-primary" />%
+                  </p>
+                  <p className="text-xs text-foreground/45 mt-1.5 tracking-wide">Handmade</p>
+                </div>
+              </motion.div>
+
+            </div>
+          </Container>
         </div>
+
+        {/* Decorative circles — purely decorative */}
+        <div aria-hidden className="pointer-events-none absolute right-[5%] top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full border border-primary/8 hidden lg:block" />
+        <div aria-hidden className="pointer-events-none absolute right-[10%] top-1/2 -translate-y-1/2 w-[340px] h-[340px] rounded-full border border-primary/12 hidden lg:block" />
       </section>
 
-      {/* ── Trust bar ── */}
-      <section className="bg-primary text-white py-4">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-14 text-sm">
+      {/* ══════════════════════════════════════════════════════════
+          TRUST BAR
+      ══════════════════════════════════════════════════════════ */}
+      <section className="bg-primary">
+        <Container className="py-5">
+          <div className="flex flex-wrap items-center justify-between gap-y-3">
             {[
               { icon: Leaf, text: "Ethically sourced yarn" },
               { icon: Package, text: "Handpacked with care" },
-              { icon: MessageCircle, text: "Custom orders welcome" },
-              { icon: Star, text: "5-star rated pieces" },
+              { icon: MessageCircleHeart, text: "Custom orders welcome" },
+              { icon: Sparkles, text: "5-star rated pieces" },
             ].map(({ icon: Icon, text }) => (
-              <div key={text} className="flex items-center gap-2 opacity-90">
+              <div key={text} className="flex items-center gap-2.5 text-white/80">
                 <Icon className="w-4 h-4 text-accent-gold shrink-0" />
-                <span className="tracking-wide text-sm">{text}</span>
+                <span className="text-sm tracking-wide">{text}</span>
               </div>
             ))}
           </div>
-        </div>
+        </Container>
       </section>
 
-      {/* ── Featured Products ── */}
-      <section className="py-20 sm:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+      {/* ══════════════════════════════════════════════════════════
+          FEATURED PRODUCTS
+      ══════════════════════════════════════════════════════════ */}
+      <section className="bg-white">
+        <Container className="py-28 lg:py-36">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16">
             <div>
-              <p className="text-primary/50 uppercase tracking-[0.2em] text-xs mb-3">
-                Curated Selection
-              </p>
-              <h2 className="font-serif text-3xl md:text-4xl text-primary">Featured Pieces</h2>
+              <Label>Curated Selection</Label>
+              <h2 className="font-serif text-4xl md:text-5xl text-primary">Featured Pieces</h2>
             </div>
             <Link
               href="/shop"
-              className="text-primary/60 hover:text-primary text-sm font-medium flex items-center gap-1 transition-colors cursor-pointer"
+              className="group inline-flex items-center gap-2 text-sm text-primary/50 hover:text-primary transition-colors duration-200 tracking-wide cursor-pointer"
             >
-              View all <ArrowRight className="w-3.5 h-3.5" />
+              View all collection
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </Link>
           </div>
 
@@ -187,9 +226,9 @@ export default function Home() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {[1, 2, 3, 4].map((i) => (
                 <div key={i} className="animate-pulse">
-                  <div className="aspect-square bg-muted rounded-2xl mb-4" />
-                  <div className="h-4 bg-muted rounded w-3/4 mb-2" />
-                  <div className="h-3 bg-muted rounded w-1/3" />
+                  <div className="aspect-[3/4] bg-muted rounded-2xl mb-5" />
+                  <div className="h-4 bg-muted rounded-full w-3/4 mb-2.5" />
+                  <div className="h-3 bg-muted rounded-full w-1/3" />
                 </div>
               ))}
             </div>
@@ -197,120 +236,139 @@ export default function Home() {
             <ProductGrid products={featuredProducts} />
           )}
 
-          <div className="text-center mt-14">
+          <div className="flex justify-center mt-16">
             <Link href="/shop">
-              <Button
-                variant="outline"
-                size="lg"
-                className="rounded-full px-10 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-200 cursor-pointer"
-              >
+              <button className="h-[52px] px-10 rounded-full border border-primary text-primary text-sm font-medium tracking-wide hover:bg-primary hover:text-white transition-all duration-300 cursor-pointer">
                 Explore Full Collection
-              </Button>
+              </button>
             </Link>
           </div>
-        </div>
+        </Container>
       </section>
 
-      {/* ── Brand Story ── */}
-      <section className="py-20 sm:py-24 bg-[#F7F5F1]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      {/* ══════════════════════════════════════════════════════════
+          BRAND STORY
+      ══════════════════════════════════════════════════════════ */}
+      <section className="bg-[#F7F5F1]">
+        <Container className="py-28 lg:py-36">
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
-            {/* Logo card */}
+            {/* Logo visual */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              <div className="bg-accent-cream/60 rounded-3xl p-10 sm:p-14 flex items-center justify-center">
-                <Image
-                  src="/images/logo-landscape.png"
-                  alt="Crochetty — handcrafted crochet boutique"
-                  width={480}
-                  height={224}
-                  className="object-contain w-full max-w-[400px] drop-shadow-lg"
+              <div className="relative">
+                <div className="bg-accent-cream/70 rounded-[2rem] p-12 sm:p-16 flex items-center justify-center">
+                  <Image
+                    src="/images/logo-landscape.png"
+                    alt="Crochetty — handcrafted crochet boutique"
+                    width={480}
+                    height={224}
+                    className="object-contain w-full max-w-[380px] drop-shadow-xl"
+                  />
+                </div>
+                {/* Floating gold accent */}
+                <div
+                  aria-hidden
+                  className="absolute -bottom-5 -right-5 w-24 h-24 rounded-full bg-accent-gold/15 blur-xl"
                 />
               </div>
             </motion.div>
 
             {/* Copy */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.1 }}
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
             >
-              <p className="text-primary/50 uppercase tracking-[0.25em] text-xs mb-4">Our Story</p>
-              <h2 className="font-serif text-3xl md:text-5xl text-primary mb-6 leading-tight">
-                Sustainable &<br /> Soulful.
+              <Label>Our Story</Label>
+              <h2 className="font-serif text-4xl md:text-[3.25rem] text-primary leading-[1.08] mb-8">
+                Sustainable &amp;<br /> Soulful.
               </h2>
-              <p className="text-foreground/60 leading-relaxed mb-5 text-base">
-                We believe in the beauty of slowness. Every piece begins with
-                ethically sourced yarn, shaped by patient hands, and finished
-                with care that no machine can replicate.
+              <p className="text-foreground/55 text-lg leading-[1.8] mb-6">
+                We believe in the beauty of slowness. Every piece begins with ethically sourced yarn,
+                shaped by patient hands, and finished with care that no machine can replicate.
               </p>
-              <p className="text-foreground/60 leading-relaxed mb-10 text-base">
-                No mass production. No shortcuts. Just pure intention and the
-                timeless tradition of needlework — made for people who value
-                the extraordinary in the everyday.
+              <p className="text-foreground/55 text-lg leading-[1.8] mb-12">
+                No mass production. No shortcuts. Just pure intention and the timeless tradition
+                of needlework — made for people who value the extraordinary in the everyday.
               </p>
-              <div className="flex flex-wrap gap-3">
+
+              <div className="flex flex-wrap gap-4">
                 <Link href="/about">
-                  <Button className="rounded-full px-8 bg-primary text-white hover:bg-primary-dark transition-colors cursor-pointer">
+                  <ShimmerButton
+                    background="var(--color-primary)"
+                    className="text-sm font-medium tracking-wide h-[52px] px-9"
+                  >
                     Read Our Story
-                  </Button>
+                  </ShimmerButton>
                 </Link>
                 <Link href="/custom">
-                  <Button
-                    variant="outline"
-                    className="rounded-full px-8 border-primary/30 text-primary hover:bg-primary/5 transition-colors cursor-pointer"
-                  >
+                  <button className="h-[52px] px-9 rounded-full border border-primary/25 text-primary text-sm font-medium tracking-wide hover:bg-primary/6 hover:border-primary/40 transition-all duration-300 cursor-pointer">
                     Commission a Piece
-                  </Button>
+                  </button>
                 </Link>
               </div>
             </motion.div>
 
           </div>
-        </div>
+        </Container>
       </section>
 
-      {/* ── Newsletter CTA ── */}
-      <section className="py-16 sm:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* ══════════════════════════════════════════════════════════
+          NEWSLETTER
+      ══════════════════════════════════════════════════════════ */}
+      <section className="bg-white">
+        <Container className="py-24 lg:py-32">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="bg-primary rounded-3xl px-8 py-14 sm:px-16 text-white text-center max-w-2xl mx-auto"
+            className="relative overflow-hidden bg-primary rounded-[2rem] px-10 py-16 sm:px-20 sm:py-20 text-center"
           >
-            <p className="text-white/50 uppercase tracking-[0.2em] text-xs mb-4">Stay Connected</p>
-            <h2 className="font-serif text-3xl md:text-4xl mb-4">Join the Crochetty Family</h2>
-            <p className="text-white/70 mb-8 leading-relaxed text-sm sm:text-base">
-              New arrivals, exclusive offers, and behind-the-scenes stories —
-              straight to your inbox.
-            </p>
-            <form
-              className="flex flex-col sm:flex-row gap-3 max-w-sm mx-auto"
-              onSubmit={(e) => e.preventDefault()}
-            >
-              <input
-                type="email"
-                placeholder="Your email address"
-                aria-label="Email for newsletter"
-                className="flex-1 px-5 py-3 rounded-full bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent-gold/60 text-sm"
-              />
-              <Button
-                type="submit"
-                className="rounded-full px-7 bg-accent-gold text-foreground font-medium hover:bg-[#b8912a] transition-colors shrink-0 cursor-pointer"
+            {/* Subtle dot texture on the card */}
+            <svg aria-hidden className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.07]" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <pattern id="dots2" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <circle cx="1" cy="1" r="1" fill="white" />
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#dots2)" />
+            </svg>
+
+            <div className="relative z-10">
+              <Label>Stay Connected</Label>
+              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-white mb-5">
+                Join the Crochetty Family
+              </h2>
+              <p className="text-white/60 text-lg leading-relaxed mb-10 max-w-md mx-auto">
+                New arrivals, exclusive offers, and behind-the-scenes stories — straight to your inbox.
+              </p>
+              <form
+                className="flex flex-col sm:flex-row gap-3 max-w-sm mx-auto"
+                onSubmit={(e) => e.preventDefault()}
               >
-                Subscribe
-              </Button>
-            </form>
+                <input
+                  type="email"
+                  placeholder="your@email.com"
+                  aria-label="Email for newsletter"
+                  className="flex-1 h-[52px] px-6 rounded-full bg-white/10 border border-white/20 text-white placeholder:text-white/35 focus:outline-none focus:ring-2 focus:ring-accent-gold/50 text-sm"
+                />
+                <button
+                  type="submit"
+                  className="h-[52px] px-8 rounded-full bg-accent-gold text-foreground font-semibold text-sm tracking-wide hover:bg-[#b8912a] transition-colors cursor-pointer shrink-0"
+                >
+                  Subscribe
+                </button>
+              </form>
+            </div>
           </motion.div>
-        </div>
+        </Container>
       </section>
 
     </div>
