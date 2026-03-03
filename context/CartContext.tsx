@@ -87,8 +87,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state.items));
   }, [state.items]);
 
-  const totalItems = state.items.reduce((s, i) => s + i.quantity, 0);
-  const totalPrice = state.items.reduce((s, i) => s + i.price * i.quantity, 0);
+  const totalItems = state.items.reduce((s: number, i: CartItem) => s + i.quantity, 0);
+  const totalPrice = state.items.reduce((s: number, i: CartItem) => s + i.price * i.quantity, 0);
 
   return (
     <CartContext.Provider
