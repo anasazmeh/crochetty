@@ -6,7 +6,7 @@ import { ProductGrid } from "@/components/shop/ProductGrid";
 import Link from "next/link";
 
 import { useEffect, useState } from "react";
-import { getFeaturedProducts, Product } from "@/lib/api";
+import type { Product } from "@/lib/db/schema";
 
 export default function Home() {
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
@@ -15,7 +15,8 @@ export default function Home() {
   useEffect(() => {
     const fetchFeatured = async () => {
       try {
-        const data = await getFeaturedProducts();
+        const res = await fetch("/api/products/featured");
+        const data = await res.json();
         setFeaturedProducts(data);
       } catch (error) {
         console.error("Failed to fetch featured products:", error);
