@@ -16,7 +16,10 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { items, shippingAddress, guestEmail } = body as {
       items: CartItemPayload[];
-      shippingAddress?: unknown;
+      shippingAddress?: {
+        name: string; line1: string; line2?: string;
+        city: string; postcode: string; country: string;
+      } | null;
       guestEmail?: string;
     };
 
