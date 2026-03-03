@@ -16,7 +16,7 @@
   --border:               #DDD5C4;
   --input:                #DDD5C4;
   --ring:                 #1B5C32;
-  --radius:               0.5rem;
+  --radius:               0.75rem;
 
   /* shadcn/ui compatible mapping */
   --card:                 #FFFFFF;
