@@ -83,7 +83,7 @@ export default function Home() {
         {/* Content — table layout for perfect vertical centering */}
         <div className="relative z-10 flex min-h-[calc(100vh-5rem)] flex-col justify-center">
           <Container className="py-28 lg:py-36">
-            <div style={{ maxWidth: 680 }}>
+            <div className="max-w-[680px] mx-auto text-center">
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -114,7 +114,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.25 }}
-                className="text-foreground/55 text-lg sm:text-xl leading-[1.75] mb-12 max-w-[520px]"
+                className="text-foreground/55 text-lg sm:text-xl leading-[1.75] mb-12 max-w-[520px] mx-auto"
               >
                 Each piece carries the warmth of hands, the patience of craft, and the intention of love.
                 No mass production — just pure, slow luxury.
@@ -124,7 +124,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="flex flex-wrap items-center gap-4"
+                className="flex flex-wrap items-center justify-center gap-4"
               >
                 <Link href="/shop">
                   <ShimmerButton
@@ -147,7 +147,7 @@ export default function Home() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.65 }}
-                className="mt-16 flex items-center gap-10 border-t border-primary/10 pt-10"
+                className="mt-16 flex items-center justify-center gap-10 border-t border-primary/10 pt-10"
               >
                 <div>
                   <p className="font-serif text-3xl text-primary leading-none">
@@ -322,8 +322,8 @@ export default function Home() {
       {/* ══════════════════════════════════════════════════════════
           NEWSLETTER
       ══════════════════════════════════════════════════════════ */}
-      <section className="bg-white">
-        <Container className="py-24 lg:py-32">
+      <section className="bg-white py-24 lg:py-32">
+        <Container className="">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}

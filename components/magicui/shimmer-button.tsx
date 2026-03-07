@@ -36,7 +36,7 @@ export function ShimmerButton({
         } as CSSProperties
       }
       className={cn(
-        "group relative z-0 flex cursor-pointer items-center justify-center gap-2 overflow-hidden whitespace-nowrap border border-white/10 px-8 py-3.5 text-white [background:var(--bg)] [border-radius:var(--radius)]",
+        "group relative z-0 flex cursor-pointer items-center justify-center gap-2 overflow-hidden whitespace-nowrap border border-white/10 px-8 text-white [background:var(--bg)] [border-radius:var(--radius)]",
         "transform-gpu transition-transform duration-300 ease-in-out active:translate-y-px",
         className,
       )}
